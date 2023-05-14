@@ -1,0 +1,57 @@
+import java.util.Scanner;
+public class z2 {
+    static Scanner in = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        char mas[] = s();
+        System.out.println("4-ое число- ");
+        printmas(mas);
+        char mas2[] = ("" + s2(mas)).toCharArray();
+    }
+
+    public static void printmas(char[] mas) {
+        for (int i = 0; i <= mas.length - 1; i++) {
+            System.out.print(mas[i] + "\t");
+        }
+        System.out.println();
+    }
+
+    public static char[] s() {
+        System.out.println("Введите 4-ое число: ");
+        int n = 0;
+        char mas[] = new char[1];
+        while (n != mas.length) {
+            String s1 = in.nextLine();
+            mas = s1.toCharArray();
+            for (int i = 0; i < mas.length; i++) {
+                if (Character.isDigit(mas[i]) == true) {
+                    if (mas[i] == '0' || mas[i] == '1' || mas[i] == '2' || mas[i] == '3')
+                        n++;
+                    else {
+                        System.out.println("Неправильно введено двоичное число, повторите ввод");
+                        n = 0;
+                        break;
+                    }
+                } else {
+                    System.out.println("Неправильный ввод числа, повторите попытку");
+                    n = 0;
+                    break;
+                }
+            }
+        }
+        return mas;
+    }
+
+    public static String s2(char[] mas) {
+        int a = 0; int k;
+        for (int i = 0; i < mas.length; i++) {
+            k = Character.digit(mas[i], 4);
+            a += k * Math.pow(4, mas.length - (i + 1));
+        }
+            int intValue = a;
+            String x = Integer.toHexString(intValue);
+            System.out.println("16-ое число- "  );
+        System.out.println(x);
+        return x;
+    }
+}
