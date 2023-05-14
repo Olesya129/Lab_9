@@ -1,0 +1,21 @@
+import java.util.Scanner;
+public class z7 {
+    static Scanner in = new Scanner(System.in);
+
+    public static void main(String args[]) {
+        System.out.println("Введите программу в виде строки");
+        String s = in.nextLine();
+        StringBuilder s2 = new StringBuilder(s);
+        System.out.println("Исходная строка");
+        System.out.println(s2);
+        for (int i = 0; i < s2.length() - 1; i++) {
+
+            if (s2.charAt(i) == '.' || s2.charAt(i) == '!' || s2.charAt(i) == '?' || s2.charAt(i) == ',') {
+                s2.delete(i, s2.indexOf(" ", i));
+            }
+        }
+            System.out.println();
+            System.out.println("Строка после изменения");
+            System.out.println(s2);
+        }
+    }
