@@ -1,0 +1,30 @@
+import java.lang.Character;
+public class z1 {
+    public static void main(String[] args) {
+        int r = 0, k = 0, t = 0;
+        char[] mas1 = {'t', 'r', 'k', 't', 'k', 'k', 't', 'r', 'k'};
+        printMas(mas1);
+        for (char c : mas1) {
+            switch(c) {
+                case 'r':
+                    r++;
+                    break;
+                case 'k':
+                    k++;
+                    break;
+                case 't':
+                    t++;
+                    break;
+            }
+        }
+        System.out.println("Массив содержит " + r + " букв r");
+        System.out.println("Массив содержит " + k + " букв k");
+        System.out.println("Массив содержит " + t + " букв t");
+    }
+    public static void printMas(char[] array) {
+        for (int i = 0; i <= array.length - 1; i++) {
+            System.out.print(array[i] + "\t");
+        }
+        System.out.println();
+    }
+}
