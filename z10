@@ -1,0 +1,32 @@
+import java.util.Arrays;
+import java.util.Scanner;
+public class z10 {
+    public static void main(String[] args) {
+        String str = "Сергеев;Владимир;Иванович;мужской;русский;11.04.1985;Кандидат наук;Заведующий;89523242161;614000,Россия,Пермский край,Пермь,Удмуртская улица,дом 4,квартира 42;58000;6;12*" +
+                "Наумов;Петр;Генадьевич;мужской;русский;02.12.1979;Кандидат наук;Заведующий;89223084958;614000,Россия,Пермский край,Пермь,улица Мира,дом 1,квартира 251;50000;3;8*" +
+                "Петров;Дмитрий;Романович;мужской;русский;25.03.1982;Доктор наук;Ученый секретарь;89224441509;614000,Россия,Пермский край,Пермь,улица Победы,дом 69,квартира 9;61000;4;1*";
+
+        String[] str1 = str.split("\\*");
+        Scanner in = new Scanner(System.in);
+        System.out.println("Введите число: ");
+        int count = 0;
+        int n = Integer.parseInt(in.nextLine());
+            for (String str2 : str1) {
+                String[] s = str2.split(";");
+                int a = Integer.parseInt(s[10]);
+                int b = Integer.parseInt(s[11]);
+                int c = Integer.parseInt(s[12]);
+                if (a >= n && a / (b * c) > 10000) {
+                    count++;
+                }
+            }
+        System.out.println("Количество людей, у которых средний доход больше цифры введенной с клавиатуры, при этом отношение среднего дохода к количеству грантов и проектов более 10000: " + count);
+        System.out.println("Ученые кандидаты технических наук: ");
+        for (String str2 : str1) {
+            String[] s = str2.split(";");
+                if (s[6].equals("Кандидат наук")) {
+                    System.out.println(Arrays.toString(s).replace("[", "").replace("]", ""));
+            }
+        }
+    }
+}
