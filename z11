@@ -1,0 +1,54 @@
+import java.util.regex.*;
+
+    public class z11 {
+        public static void main(String[] args){
+            String[] mas = {"Маша ходит в 10 классе"};
+            printmas1(mas);
+            System.out.println("Не правильно!");
+            printmas1(a1(mas));
+            System.out.println("Не правильно!");
+            printmas1(a2(mas));
+            System.out.println("Не правильно!");
+            printmas1(a3(mas));
+            System.out.println("Правильно!");
+        }
+        public static String[] a1(String mas1[]){
+            Pattern pat1 = Pattern.compile("ходит");
+            String s = "учится";
+            Matcher mat1;
+            for(int i=0; i< mas1.length; i++){
+                mat1=pat1.matcher(mas1[i]);
+                if (mat1.find()){
+                    mas1[i]=mat1.replaceAll(s);
+                }
+            }return mas1;
+        }
+        public static String[] a2(String mas1[]){
+            Pattern pat2 = Pattern.compile("10");
+            String s2 = "11";
+            Matcher mat2;
+            for(int i=0; i< mas1.length; i++){
+                mat2=pat2.matcher(mas1[i]);
+                if (mat2.find()){
+                    mas1[i]=mat2.replaceAll(s2);
+                }
+            }return mas1;
+        }
+        public static String[] a3(String mas1[]){
+            Pattern pat3 = Pattern.compile("Маша");
+            String s3 = "Лена";
+            Matcher mat3;
+            for(int i=0; i< mas1.length; i++){
+                mat3=pat3.matcher(mas1[i]);
+                if (mat3.find()){
+                    mas1[i]=mat3.replaceAll(s3);
+                }
+            }return mas1;
+        }
+        public static void printmas1(String[]mas1){
+            for (int i=0; i< mas1.length; i++){
+                System.out.println(mas1[i]);
+            }
+            System.out.println();
+        }
+    }
