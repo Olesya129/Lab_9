@@ -1,0 +1,40 @@
+import java.util.Scanner;
+import java.util.regex.*;
+public class z12 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String[] mas = {"Александр Владимирович работает в ПГТУ",
+                "На факультете ФПММ",
+                "Он занимает должность завуча",};
+        System.out.println("Массив строк");
+        printMas(mas);
+        System.out.println();
+        Pattern pat1 = Pattern.compile("ПГТУ");
+        Pattern pat2 = Pattern.compile("ФПММ");
+        Pattern pat3 = Pattern.compile("завуча");
+        Matcher mat1, mat2, mat3;
+        for (int i = 0; i < mas.length; i++) {
+            mat1 = pat1.matcher(mas[i]);
+            mat2 = pat2.matcher(mas[i]);
+            mat3 = pat3.matcher(mas[i]);
+            if (mat1.find()) {
+                mas[i] = mat1.replaceAll("ПНИПУ");
+            }
+            if (mat2.find()) {
+                mas[i] = mat2.replaceAll("ЭТФ");
+            } else {
+                if (mat3.find()) {
+                    mas[i] = mat3.replaceAll("заведующего кафедры");
+                }
+            }}
+        System.out.println("Массив строк после изменения");
+        printMas(mas);
+    }
+    public static void printMas(String[] array){
+        for (int i=0; i<= array.length-1; i++){
+            System.out.println(array[i]);
+
+        }
+    }
+
+}
