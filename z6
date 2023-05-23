@@ -1,0 +1,148 @@
+import java.util.Scanner;
+
+public class z6{
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Какой ввод будет производиться?\n1-Регламентированный\n2-Нерегламентированный");
+        int what = scanner.nextInt();
+
+        System.out.println("Введите количество машин");
+        int n = scanner.nextInt();System.out.print("Введите минимальную стоимость дополнительного оборудования: ");
+        int minEquipCost = scanner.nextInt();
+        System.out.print("Введите максимальную стоимость дополнительного оборудования: ");
+        int maxEquipCost = scanner.nextInt();
+        String[] cars = new String[n];
+
+        if (what==1){
+            for (int i = 0;i<n;i++){
+                StringBuilder car = new StringBuilder();
+                System.out.println("Введите информацию о " + (i+1) + " машине");
+                for (int j = 0; j < 17; j++){
+                    if (j==0){
+                        scanner.nextLine();
+                        System.out.println("Введите город регистрации: ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==1){
+                        System.out.println("Введите марку: ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==2){
+                        System.out.println("Введите тип модель: ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==3){
+                        System.out.println("Введите год выпуска: ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==4){
+                        System.out.println("Введите Гос. номер: ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==5){
+                        System.out.println("Введите количество ПТС: ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==6){
+                        System.out.println("Введите количество владельцев; ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==7){
+                        System.out.println("Работала в такси? (да или нет): ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==8){
+                        System.out.println("Введите количество ДТП: ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==9){
+                        System.out.println("Введите количество крашенных элементов: ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==10){
+                        System.out.println("Был наложен арест (да или нет): ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==11){
+                        System.out.println("Введите количество пройденных ТО: ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==12){
+                        System.out.println("Введите наличие тех. карты (да или нет): ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==13){
+                        System.out.println("Введите цвет: ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==14){
+                        System.out.println("Введите стоимость выкупа: ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==15){
+                        System.out.println("Введите стоимость продажи: ");
+                        car.append(scanner.nextLine()+";");
+                    }
+                    if (j==16){
+                        System.out.println("Введите стоимость доп. оборудования: ");
+                        car.append(scanner.nextLine()+";");
+                    }
+
+                }
+                cars[i] = String.valueOf(car);
+            }
+        }
+        else if (what==2) {
+            String line=scanner.nextLine();
+            System.out.println("Производите ввод:");
+            for (int i = 0; i<n;i++){
+                line = scanner.nextLine();
+                cars[i] = line;
+            }
+        }
+
+
+        int count = 0;
+        for(String car1 : cars) {
+            String[] carInfo = car1.split(";");
+            String city = carInfo[0];
+            int numOwners = Integer.parseInt(carInfo[6]);
+            int numCrash = Integer.parseInt(carInfo[9]);
+            int numDTP = Integer.parseInt(carInfo[8]);
+
+
+            if(numCrash >= 2 && numDTP == 0 && numOwners > 2) {
+                count++;
+                System.out.println(city);
+            }
+        }
+
+        System.out.println("Количество автомобилей по городам регистрации у которых нет фиксации ДТП, " +
+                "но есть не менее 2-х крашенных элементов, с количеством владельцев большем чем 2: " + count);
+
+
+
+        count = 0;
+        for(String car1 : cars) {
+            String[] carInfo = car1.split(";");
+            String city = carInfo[0];
+            String brand = carInfo[7];
+
+            int addEquipCost = Integer.parseInt(carInfo[16]);
+            int salePrice = Integer.parseInt(carInfo[15]);
+            int purchasePrice = Integer.parseInt(carInfo[14]);
+            int numDTP = Integer.parseInt(carInfo[8]);
+
+            if(numDTP >= 2 && addEquipCost >= minEquipCost && addEquipCost <= maxEquipCost &&
+                    (double)(salePrice - purchasePrice)/purchasePrice > 0.2) {
+                count++;
+                System.out.println(city + " " + brand);
+            }
+        }
+
+        System.out.println("Количество у которых зарегистрировано не менее двух ДТП, и т.д., а стоимость продажи" +
+                " превышает стоимость покупки более чем на 20%: " + count);
+    }
+}
